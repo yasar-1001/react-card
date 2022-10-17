@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { faker, ImageModule } from '@faker-js/faker';
 import Card from './card';
