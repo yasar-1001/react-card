@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import { faker, ImageModule } from '@faker-js/faker';
+import { saveAs } from 'file-saver'
 
 const Card = (props) => {
     const randomName = faker.name.fullName();
@@ -11,6 +12,10 @@ const Card = (props) => {
   const [namech,setName]=useState (props.name);
   const setNameChangeHandler = event => setName(event.target.value);
 
+
+  const downloadImage = (image,name) => {
+    saveAs( `${image}`, `${name}.png`) // Put your image url here.
+  }
     return (
     <div className="card m-3 text-center border border-secondary rounded  bg-white " >
     <div className="box9 text-center">
@@ -23,7 +28,9 @@ const Card = (props) => {
     <div className="card-title overflow-hidden font-weight-bold"> {namech} </div>
     <input className='form-control mb-3' type="text" value={namech} onChange={setNameChangeHandler} placeholder='Enter Text' />
     <button type="button" className='btn btn-outline-success btn-sm m-1' onClick={changeImageHandler} > Change Image </button>
-    <button type="button" className='btn btn-outline-danger btn-sm m-1' onClick={props.onDel}> Delete Card </button>
+    <button type="button" className='btn btn-outline-info btn-sm m-1' onClick={()=>downloadImage(`${image}`,`${namech}`)}> Download Image </button>
+    <br></br>
+    <button type="button" className='btn btn-danger btn-sm m-1' onClick={props.onDel}> Delete Card </button>
     </div>
     </div>
     

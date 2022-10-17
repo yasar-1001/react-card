@@ -7,33 +7,33 @@ const [cards, setCards]= useState ([
   {
   id:'1',
   name:`${faker.name.fullName()}`,
-  image: 'https://loremflickr.com/1024/740/animals?lock=22526',
+  image: `${faker.image.animals(1024,740, true)}`,
   },
   {
     id:'2',
     name:`${faker.name.fullName()}`,
-    image: 'https://loremflickr.com/1024/740/animals?lock=335',
+    image: `${faker.image.animals(1024,740, true)}`,
   },
 
   {
       id:'3',
       name:`${faker.name.fullName()}`,
-      image: 'https://loremflickr.com/1024/740/animals?lock=83547',
+      image: `${faker.image.animals(1024,740, true)}`,
   },
   {
         id:'4',
         name:`${faker.name.fullName()}`,
-        image: 'https://loremflickr.com/1024/740/animals?lock=81979',
+        image: `${faker.image.animals(1024,740, true)}`,
   },
   {
           id:'5',
           name: `${faker.name.fullName()}` ,
-          image: 'https://loremflickr.com/1024/740/animals?lock=61208',
+          image: `${faker.image.animals(1024,740, true)}`,
   },
   {
             id:'6',
             name: `${faker.name.fullName()}` ,
-            image: 'https://loremflickr.com/1024/740/animals?lock=5380',
+            image: `${faker.image.animals(1024,740, true)}`,
 },
 ])
 const [showCard,setShowCard]=useState(true);
@@ -45,6 +45,7 @@ const toggleShowCard=()=>{
   setShowCard(!showCard);
   setBtnText(showCard?'Show card':'Hide card');
   setBtnclr (showCard?'btn-danger':'btn-success');
+  setCardLen(showCard?'Cards Are 🙈 Hiden':null)
 }
 const cardDelHandle=(cardIndex)=> {
   const card_copy = [...cards]
@@ -73,8 +74,6 @@ const addCard=()=> {
   setCards(card_copy)
   setCardLen ('Cards Are 🙈 Hiden')
   setBtnVisible("visible")
- 
-
 }
 
 const delAll=()=> {
@@ -89,9 +88,10 @@ const mapedcards = cards.map ((card,index)=><Card key={card.id} id={card.id} nam
 img={card.image} onDel={()=>cardDelHandle(index)} bttext={btnText} btclr={btnclr} tagglecard={toggleShowCard} add={addCard}/>)
 const delnotice = <center ><div className="card text-center m-2"><div className="card-body"> {cardLen} </div></div></center>
 
+
   return (
-    <div className='text-center'><button type="button" className={`btn ${btnclr} m-4`}  onClick={toggleShowCard} style={{visibility:`${butvisible}`}}> {btnText} 
-    </button> <button type="button" className= 'btn btn-success m-4' onClick={addCard} > Add Card </button>
+    <div className='text-center'><button type="button" className={`btn ${btnclr} m-4`}  onClick={toggleShowCard} style={{visibility:`${butvisible}`}}> {btnText} </button> 
+    <button type="button" className= 'btn btn-success m-4' onClick={addCard} > Add Card </button>
     <button type="text" className= 'btn btn-outline-success m-4' > Total Cards : {cards.length} </button> 
     <button type="button" className= 'btn btn-outline-danger m-4' onClick={delAll}> Delete All </button>   
     <div className=" card-columns w-100">
